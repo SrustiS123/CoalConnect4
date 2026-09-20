@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CoalConnect - Job Seeker</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f5;
+        }
+
+        .header {
+            background-color: #222222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .job-card {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .job-card h2 {
+            margin-top: 0;
+            color: #222222;
+        }
+
+        .job-card p {
+            color: #555555;
+            line-height: 1.6;
+        }
+
+        .apply-button {
+            background-color: #e69b00;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .apply-button:hover {
+            background-color: #c98200;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>CoalConnect</h1>
+        <p>Job Seeker - Find Mining Jobs</p>
+    </div>
+
+    <div class="container">
+
+        <div class="job-card">
+            <h2>Mining Engineer</h2>
+            <p><strong>Company:</strong> Example Coal Mine A</p>
+            <p><strong>Location:</strong> Jharkhand</p>
+            <p><strong>Salary:</strong> ₹40,000 - ₹60,000 per month</p>
+            <p><strong>Qualification:</strong> B.Tech in Mining Engineering</p>
+            <p><strong>Skills:</strong> Mine planning, safety, operations</p>
+            <p><strong>Description:</strong> Responsible for planning and monitoring mining operations.</p>
+
+            <button class="apply-button" onclick="showApplication()">Apply</button>
+        </div>
+
+        <div class="job-card">
+            <h2>Safety Officer</h2>
+            <p><strong>Company:</strong> Example Coal Mine B</p>
+            <p><strong>Location:</strong> Chhattisgarh</p>
+            <p><strong>Salary:</strong> ₹30,000 - ₹45,000 per month</p>
+            <p><strong>Qualification:</strong> Diploma or Degree</p>
+            <p><strong>Skills:</strong> Safety management, inspection, reporting</p>
+            <p><strong>Description:</strong> Monitor workplace safety and support mining safety procedures.</p>
+
+            <button class="apply-button" onclick="showApplication()">Apply</button>
+        </div>
+
+    <div id="application"></div>
+    </div>
+<script>
+    function showApplication() {
+        document.getElementById("application").innerHTML = `
+            <div class="job-card">
+                <h2>Job Application</h2>
+
+                <label>Name</label>
+                <input type="text" placeholder="Enter your name">
+
+                <label>Mobile Number</label>
+                <input type="tel" placeholder="Enter mobile number">
+
+                <label>Email</label>
+                <input type="email" placeholder="Enter your email">
+
+                <label>Qualification</label>
+                <input type="text" placeholder="Enter your qualification">
+
+                <button class="apply-button" onclick="submitApplication()">Submit Application</button>
+            </div>
+        `;
+    }
+
+    function submitApplication() {
+        alert("Your job application has been submitted.");
+    }
+</script>
+</body>
+</html>

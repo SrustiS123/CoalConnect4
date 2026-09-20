@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CoalConnect - Notifications</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f5;
+        }
+
+        .header {
+            background-color: #222222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .notification {
+            background-color: white;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .notification h2 {
+            margin-top: 0;
+            color: #222222;
+        }
+
+        .notification p {
+            color: #555555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>CoalConnect</h1>
+        <p>Notifications & Updates</p>
+    </div>
+
+    <div class="container">
+
+    <div class="notification" onclick="window.location.href='collector.html'">
+        <h2>New Coal Mine Update</h2>
+        <p>Example Coal Mine A has updated its production information.</p>
+    </div>
+
+    <div class="notification" onclick="window.location.href='jobseeker.html'">
+        <h2>New Job Available</h2>
+        <p>A new Mining Engineer position has been added.</p>
+    </div>
+
+    <div class="notification" onclick="window.location.href='giver.html'">
+        <h2>Information Verification</h2>
+        <p>Submitted mine information is currently under verification.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

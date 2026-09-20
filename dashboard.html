@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CoalConnect - Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f4f8f5, #eef5f0);
+            color: #222;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #17251d, #304b39);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 38px;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            margin: 8px 0 0;
+            color: #d9eadf;
+            font-size: 17px;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background-color: #24352a;
+            text-align: center;
+            padding: 14px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #ffc857;
+        }
+
+        /* WELCOME */
+        .welcome {
+            text-align: center;
+            padding: 42px 20px 25px;
+        }
+
+        .welcome h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #24352a;
+        }
+
+        .welcome p {
+            color: #5d6961;
+            font-size: 18px;
+            margin: 5px;
+        }
+
+        .welcome .subtitle {
+            font-size: 15px;
+            max-width: 700px;
+            margin: 12px auto;
+            line-height: 1.6;
+        }
+
+        /* MAIN FEATURE */
+        .main-feature {
+            width: 90%;
+            max-width: 1100px;
+            margin: 20px auto 40px;
+            background: linear-gradient(135deg, #ffffff, #edf8f0);
+            border-radius: 22px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border-left: 8px solid #2e8b57;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-feature::after {
+            content: "⛏️";
+            position: absolute;
+            right: 30px;
+            top: 20px;
+            font-size: 75px;
+            opacity: 0.08;
+        }
+
+        .feature-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-label {
+            display: inline-block;
+            background-color: #d9f2df;
+            color: #20713f;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .main-feature h2 {
+            color: #20382a;
+            font-size: 30px;
+            margin: 8px 0;
+        }
+
+        .main-feature h3 {
+            color: #3d5c48;
+            font-size: 17px;
+            font-weight: normal;
+            margin-bottom: 15px;
+        }
+
+        .main-feature p {
+            color: #59665d;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        /* FEATURE POINTS */
+        .feature-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 22px 0;
+        }
+
+        .feature-point {
+            background-color: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            font-size: 14px;
+        }
+
+        /* MAIN BUTTON */
+        .main-button {
+            background: linear-gradient(135deg, #2e8b57, #216b43);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .main-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(46,139,87,0.3);
+        }
+
+        /* OTHER FEATURES */
+        .other-title {
+            text-align: center;
+            margin: 20px 0 10px;
+            color: #26392d;
+            font-size: 27px;
+        }
+
+        .other-subtitle {
+            text-align: center;
+            color: #69756d;
+            margin-bottom: 25px;
+        }
+
+        .features {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 17px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.09);
+            transition: 0.3s;
+            border-top: 4px solid #e69b00;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.13);
+        }
+
+        .feature-icon {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card h3 {
+            color: #293a30;
+            margin: 8px 0;
+        }
+
+        .feature-card p {
+            color: #68736c;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .small-button {
+            background-color: #e69b00;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .small-button:hover {
+            background-color: #c98200;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #24352a;
+            color: #dce8df;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+
+            .header h1 {
+                font-size: 30px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 6px 8px;
+            }
+
+            .main-feature {
+                padding: 25px;
+            }
+
+            .main-feature h2 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>⛏️ CoalConnect</h1>
+        <p>Connecting the Coal Industry • Digitally • Safely • Transparently</p>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="dashboard.html">Home</a>
+        <a href="collector.html">Mines</a>
+        <a href="jobseeker.html">Jobs</a>
+        <a href="notifications.html">Notifications</a>
+        <a href="#">Profile</a>
+    </nav>
+
+    <!-- WELCOME -->
+    <div class="welcome">
+
+        <h2>Welcome to CoalConnect 👋</h2>
+
+        <p>Your digital platform for smarter coal-mine management.</p>
+
+        <p class="subtitle">
+            CoalConnect brings mine information, employment, coal services,
+            governance and compliance activities together in one platform.
+        </p>
+
+    </div>
+
+    <!-- MAIN FEATURE -->
+    <div class="main-feature">
+
+        <div class="feature-content">
+
+            <span class="feature-label">⭐ MAIN FOCUS OF COALCONNECT</span>
+
+            <h2>🏛️ Governance & Compliance</h2>
+
+            <h3>Monitor • Inspect • Detect • Correct • Verify</h3>
+
+            <p>
+                Digitally monitor coal-mine compliance, inspections,
+                violations and corrective actions in one place.
+                Help mine officials, inspectors, management and regulatory
+                authorities make compliance monitoring simpler and more transparent.
+            </p>
+
+            <div class="feature-points">
+
+                <div class="feature-point">🔍 Digital Inspections</div>
+
+                <div class="feature-point">⚠️ Violation Detection</div>
+
+                <div class="feature-point">🛠️ Corrective Actions</div>
+
+                <div class="feature-point" onclick="window.location.href='ai-risk.html'">
+    🤖 AI Risk Analysis
+</div>
+
+                <div class="feature-point">📊 Compliance Reports</div>
+
+                <div class="feature-point">🔔 Smart Alerts</div>
+
+            </div>
+
+            <button class="main-button"
+                onclick="window.location.href='governance.html'">
+                Explore Governance & Compliance →
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- OTHER FEATURES -->
+    <h2 class="other-title">Explore Other CoalConnect Features</h2>
+
+    <p class="other-subtitle">
+        CoalConnect provides several other services for the coal industry.
+    </p>
+
+    <div class="features">
+
+        <!-- CUSTOMER -->
+        <div class="feature-card">
+            <div class="feature-icon">🏭</div>
+            <h3>Coal & Customer Services</h3>
+            <p>
+                Find coal mines and explore coal-related options
+                for different industries.
+            </p>
+
+            <button class="small-button"
+                onclick="window.location.href='customer.html'">
+                Explore
+            </button>
+        </div>
+
+        <!-- JOBS -->
+        <div class="feature-card">
+            <div class="feature-icon">👷</div>
+            <h3>Employment & Jobs</h3>
+            <p>
+                Find employment opportunities in coal mining
+                and related industries.
+            </p>
+
+            <button class="small-button"
+                onclick="window.location.href='jobseeker.html'">
+                Find Jobs
+            </button>
+        </div>
+
+        <!-- MINES -->
+        <div class="feature-card">
+            <div class="feature-icon">⛏️</div>
+            <h3>Mine Information</h3>
+            <p>
+                Explore information about coal mines,
+                locations and mining activities.
+            </p>
+
+            <button class="small-button"
+                onclick="window.location.href='collector.html'">
+                Explore Mines
+            </button>
+        </div>
+
+        <!-- INFORMATION -->
+        <div class="feature-card">
+            <div class="feature-icon">📢</div>
+            <h3>Information & Updates</h3>
+            <p>
+                Submit useful information and updates
+                related to coal mines.
+            </p>
+
+            <button class="small-button"
+                onclick="window.location.href='giver.html'">
+                Submit Information
+            </button>
+        </div>
+
+        <!-- NOTIFICATIONS -->
+        <div class="feature-card">
+            <div class="feature-icon">🔔</div>
+            <h3>Alerts & Notifications</h3>
+            <p>
+                Stay updated with important CoalConnect
+                alerts and notifications.
+            </p>
+
+            <button class="small-button"
+                onclick="window.location.href='notifications.html'">
+                View Alerts
+            </button>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        CoalConnect © 2026 | Connecting the Coal Industry
+    </footer>
+<script>
+
+function openAIRisk() {
+    window.location.href = "ai-risk.html";
+}
+
+</script>
+</body>
+</html>

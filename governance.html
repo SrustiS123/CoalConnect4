@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CoalConnect - Governance & Compliance</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef7f0, #f8f5ed);
+            color: #26332a;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: linear-gradient(135deg, #17251d, #31543c);
+            color: white;
+            padding: 25px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        .header-text p {
+            margin: 4px 0;
+            color: #dceade;
+            font-size: 14px;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            background: #24352a;
+            padding: 13px;
+            text-align: center;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #ffc857;
+        }
+
+        /* INTRO */
+
+        .intro {
+            text-align: center;
+            padding: 35px 20px 20px;
+        }
+
+        .intro h1 {
+            margin: 0;
+            font-size: 32px;
+            color: #20382a;
+        }
+
+        .intro p {
+            color: #657168;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        /* SUMMARY */
+
+        .summary {
+            width: 92%;
+            max-width: 1150px;
+            margin: 20px auto 35px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 22px;
+            border-radius: 16px;
+            box-shadow: 0 5px 16px rgba(0,0,0,0.09);
+            border-left: 6px solid;
+            transition: 0.3s;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .green {
+            border-color: #2e9d61;
+        }
+
+        .yellow {
+            border-color: #e8ad28;
+        }
+
+        .red {
+            border-color: #d9534f;
+        }
+
+        .orange {
+            border-color: #e67e22;
+        }
+
+        .summary-icon {
+            font-size: 28px;
+        }
+
+        .summary-card h3 {
+            margin: 10px 0 5px;
+            color: #37463c;
+            font-size: 15px;
+        }
+
+        .number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #26332a;
+        }
+
+        /* MINE SECTION */
+
+        .mine-section {
+            width: 92%;
+            max-width: 1150px;
+            margin: auto;
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.09);
+        }
+
+        .mine-section h2 {
+            margin-top: 0;
+            color: #263d2e;
+        }
+
+        select {
+            width: 100%;
+            max-width: 500px;
+            padding: 13px;
+            border: 2px solid #dce7df;
+            border-radius: 10px;
+            font-size: 15px;
+            background: #f9fcfa;
+            cursor: pointer;
+        }
+
+        /* COMPLIANCE */
+
+        .compliance {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f5fbf6, #fffdf7);
+            border-radius: 16px;
+            border: 1px solid #e1e9e3;
+        }
+
+        .mine-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .mine-title h2 {
+            margin: 0;
+        }
+
+        .status {
+            padding: 8px 14px;
+            border-radius: 20px;
+            background: #dff4e6;
+            color: #237344;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .progress-item {
+            margin: 20px 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .percentage {
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 13px;
+            background: #e5ebe7;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 20px;
+            transition: width 0.5s ease;
+        }
+
+        .overall {
+            background: #2e9d61;
+            width: 82%;
+        }
+
+        .safety {
+            background: #38a169;
+            width: 90%;
+        }
+
+        .environment {
+            background: #e6a923;
+            width: 75%;
+        }
+
+        .labour {
+            background: #4b83c4;
+            width: 85%;
+        }
+
+        .production {
+            background: #8c63c7;
+            width: 88%;
+        }
+
+        /* PROFILE BUTTON */
+
+        .profile-button {
+            margin-top: 15px;
+            background: linear-gradient(135deg, #2e8b57, #216b43);
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 9px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .profile-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* PROFILE POPUP */
+
+        .profile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(20, 35, 25, 0.65);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 30px 15px;
+        }
+
+        .profile-box {
+            width: 95%;
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            border-radius: 22px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #173b26, #2e8b57);
+            color: white;
+            padding: 22px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .profile-header p {
+            margin: 5px 0 0;
+            color: #dceade;
+            font-size: 13px;
+        }
+
+        .close-button {
+            border: none;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 22px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .profile-content {
+            padding: 25px;
+        }
+
+        .profile-content > h3 {
+            margin-top: 0;
+            color: #285638;
+            font-size: 23px;
+        }
+
+        /* PROFILE INFORMATION */
+
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-card {
+            background: #f7faf8;
+            border: 1px solid #e0e9e2;
+            padding: 17px;
+            border-radius: 13px;
+        }
+
+        .info-card span {
+            display: block;
+            color: #68756d;
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .info-card strong {
+            color: #26332a;
+            font-size: 15px;
+        }
+
+        /* INSPECTION FORM */
+
+        .info-card label {
+            display: block;
+            color: #4f5e54;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .info-card input,
+        .info-card select,
+        .info-card textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #d6e1d9;
+            border-radius: 9px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            background: white;
+        }
+
+        .info-card input:focus,
+        .info-card select:focus,
+        .info-card textarea:focus {
+            outline: none;
+            border-color: #2e8b57;
+            box-shadow: 0 0 0 2px rgba(46,139,87,0.12);
+        }
+
+        .info-card small {
+            display: block;
+            margin-top: 7px;
+            color: #7a857d;
+            font-size: 11px;
+        }
+
+        /* COMPLIANCE DETAILS */
+
+        .compliance-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 17px;
+        }
+
+        .detail-card {
+            padding: 20px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f7fbf8, #fffdf7);
+            border: 1px solid #e0e8e2;
+        }
+
+        .detail-card h4 {
+            margin-top: 0;
+            color: #315b3e;
+            font-size: 16px;
+        }
+
+        .detail-card p {
+            font-size: 13px;
+            margin: 10px 0;
+            color: #4f5e54;
+        }
+
+        /* QUICK ACTIONS */
+
+        .quick-title {
+            text-align: center;
+            margin: 45px 0 20px;
+            color: #263d2e;
+        }
+
+        .quick-actions {
+            width: 92%;
+            max-width: 1150px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            padding-bottom: 50px;
+        }
+
+        .action {
+            background: white;
+            padding: 22px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 13px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .action:hover {
+            transform: translateY(-5px);
+        }
+
+        .action-icon {
+            font-size: 32px;
+        }
+
+        .action h3 {
+            font-size: 16px;
+            margin: 10px 0 5px;
+        }
+
+        .action p {
+            font-size: 13px;
+            color: #707a73;
+        }
+
+        /* INSPECTION HISTORY */
+
+        .section-card {
+            width: 92%;
+            max-width: 1150px;
+            margin: 25px auto 50px;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-title h2 {
+            margin: 0;
+            color: #173b2d;
+        }
+
+        .section-title p {
+            margin-top: 6px;
+            color: #6b7280;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .inspection-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        .inspection-table th {
+            background: #173b2d;
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .inspection-table td {
+            padding: 14px;
+            border-bottom: 1px solid #e5e7eb;
+            color: #374151;
+            font-size: 14px;
+        }
+
+        .inspection-table tr:hover {
+            background: #f0fdf4;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .status-badge.pending {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .status-badge.completed {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status-badge.violation {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        /* FILE BUTTON */
+
+        .file-button {
+            display: inline-block;
+            padding: 7px 12px;
+            background: #e8f5ed;
+            color: #237344;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .file-button:hover {
+            background: #d4eddd;
+        }
+
+        .no-file {
+            color: #9ca3af;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #24352a;
+            color: #dce8df;
+            text-align: center;
+            padding: 18px;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .header {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .header-text {
+                text-align: center;
+            }
+
+            .intro h1 {
+                font-size: 26px;
+            }
+
+            .profile-header h2 {
+                font-size: 19px;
+            }
+
+            .profile-content {
+                padding: 18px;
+            }
+
+            .section-card {
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo">
+            ⛏️ CoalConnect
+        </div>
+
+        <div class="header-text">
+            <strong>Governance & Compliance</strong>
+            <p>Smart • Safe • Transparent Mining</p>
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <a href="dashboard.html">Home</a>
+        <a href="#">Dashboard</a>
+        <a href="#">Mines</a>
+        <a href="#">Inspections</a>
+        <a href="#">Violations</a>
+        <a href="#">Corrective Actions</a>
+        <a href="#">AI Risk</a>
+        <a href="#">Contractors</a>
+        <a href="#">Documents</a>
+        <a href="#">Map</a>
+        <a href="#">Reports</a>
+        <a href="notifications.html">Notifications</a>
+
+    </nav>
+
+
+    <!-- INTRO -->
+
+    <div class="intro">
+
+        <h1>🏛️ Coal Mine Governance & Compliance</h1>
+
+        <p>
+            Monitor mine compliance, inspections, violations and corrective actions
+            from one simple platform.
+        </p>
+
+    </div>
+
+
+    <!-- SUMMARY CARDS -->
+
+    <div class="summary">
+
+        <div class="summary-card green">
+            <div class="summary-icon">🟢</div>
+            <h3>Compliant Mines</h3>
+            <div class="number">2</div>
+        </div>
+
+        <div class="summary-card yellow">
+            <div class="summary-icon">🟡</div>
+            <h3>Pending Compliance</h3>
+            <div class="number">1</div>
+        </div>
+
+        <div class="summary-card red">
+            <div class="summary-icon">🔴</div>
+            <h3>High-Risk Mines</h3>
+            <div class="number">1</div>
+        </div>
+
+        <div class="summary-card orange">
+            <div class="summary-icon">⚠️</div>
+            <h3>Open Violations</h3>
+            <div class="number">7</div>
+        </div>
+
+    </div>
+
+
+    <!-- MINE SECTION -->
+
+    <div class="mine-section">
+
+        <h2>⛏️ Select Mine</h2>
+
+        <select id="mineSelect" onchange="changeMine()">
+
+            <option value="gevra">
+                Gevra Open Cast Mine
+            </option>
+
+            <option value="jharia">
+                Jharia Coalfield
+            </option>
+
+            <option value="kusmunda">
+                Kusmunda Open Cast Mine
+            </option>
+
+            <option value="dipka">
+                Dipka Open Cast Project
+            </option>
+
+        </select>
+
+
+        <!-- COMPLIANCE -->
+
+        <div class="compliance">
+
+            <div class="mine-title">
+
+                <h2 id="mineTitle">
+                    Gevra Open Cast Mine
+                </h2>
+
+                <span class="status" id="mineStatus">
+                    🟢 Good Compliance
+                </span>
+
+            </div>
+
+
+            <!-- OVERALL -->
+
+            <div class="progress-item">
+
+                <div class="progress-label">
+                    <span>Overall Compliance</span>
+
+                    <span class="percentage" id="overallPercentage">
+                        82%
+                    </span>
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill overall"
+                        id="overallBar"
+                        style="width:82%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SAFETY -->
+
+            <div class="progress-item">
+
+                <div class="progress-label">
+                    <span>Safety</span>
+
+                    <span class="percentage" id="safetyPercentage">
+                        90%
+                    </span>
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill safety"
+                        id="safetyBar"
+                        style="width:90%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ENVIRONMENT -->
+
+            <div class="progress-item">
+
+                <div class="progress-label">
+                    <span>Environment</span>
+
+                    <span class="percentage" id="environmentPercentage">
+                        75%
+                    </span>
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill environment"
+                        id="environmentBar"
+                        style="width:75%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LABOUR -->
+
+            <div class="progress-item">
+
+                <div class="progress-label">
+                    <span>Labour</span>
+
+                    <span class="percentage" id="labourPercentage">
+                        85%
+                    </span>
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill labour"
+                        id="labourBar"
+                        style="width:85%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCTION -->
+
+            <div class="progress-item">
+
+                <div class="progress-label">
+                    <span>Production</span>
+
+                    <span class="percentage" id="productionPercentage">
+                        88%
+                    </span>
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill production"
+                        id="productionBar"
+                        style="width:88%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE BUTTON -->
+
+            <button
+                class="profile-button"
+                onclick="showProfile()">
+
+                View Mine Compliance Profile →
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <h2 class="quick-title">
+        Quick Actions
+    </h2>
+
+
+    <div class="quick-actions">
+
+        <div class="action" onclick="openInspection()">
+
+            <div class="action-icon">🔍</div>
+
+            <h3>New Inspection</h3>
+
+            <p>Record a new mine inspection.</p>
+
+        </div>
+
+
+        <div class="action">
+
+            <div class="action-icon">⚠️</div>
+
+            <h3>Report Violation</h3>
+
+            <p>Report a compliance issue.</p>
+
+        </div>
+
+
+        <div class="action">
+
+            <div class="action-icon">🛠️</div>
+
+            <h3>Corrective Actions</h3>
+
+            <p>Track pending corrective actions.</p>
+
+        </div>
+
+
+        <div class="action">
+
+            <div class="action-icon">🤖</div>
+
+            <h3>AI Risk Analysis</h3>
+
+            <p>View mine risk analysis.</p>
+
+        </div>
+
+
+        <div class="action">
+
+            <div class="action-icon">📄</div>
+
+            <h3>Documents</h3>
+
+            <p>View compliance documents.</p>
+
+        </div>
+
+
+        <div class="action">
+
+            <div class="action-icon">📊</div>
+
+            <h3>Reports</h3>
+
+            <p>Generate compliance reports.</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- INSPECTION HISTORY -->
+
+    <div class="section-card">
+
+        <div class="section-title">
+
+            <div>
+
+                <h2>📋 Inspection History</h2>
+
+                <p>
+                    View previous mine inspections and their current status.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table class="inspection-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Inspection ID</th>
+                        <th>Mine</th>
+                        <th>Inspector</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>File</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="inspectionHistory">
+
+                    <!-- SAMPLE INSPECTION 1 -->
+
+                    <tr>
+
+                        <td>INS-4821</td>
+
+                        <td>Gevra Open Cast Mine</td>
+
+                        <td>Rahul</td>
+
+                        <td>20 Sept 2026</td>
+
+                        <td>Safety</td>
+
+                        <td>
+                            <span class="status-badge pending">
+                                Under Review
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="no-file">—</span>
+                        </td>
+
+                    </tr>
+
+
+                    <!-- SAMPLE INSPECTION 2 -->
+
+                    <tr>
+
+                        <td>INS-3176</td>
+
+                        <td>Jharia Coalfield</td>
+
+                        <td>Anil</td>
+
+                        <td>18 Sept 2026</td>
+
+                        <td>Environment</td>
+
+                        <td>
+                            <span class="status-badge completed">
+                                Completed
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="no-file">—</span>
+                        </td>
+
+                    </tr>
+
+
+                    <!-- SAMPLE INSPECTION 3 -->
+
+                    <tr>
+
+                        <td>INS-2654</td>
+
+                        <td>Kusmunda Open Cast Mine</td>
+
+                        <td>Priya</td>
+
+                        <td>17 Sept 2026</td>
+
+                        <td>General</td>
+
+                        <td>
+                            <span class="status-badge violation">
+                                Violation Found
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="no-file">—</span>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        CoalConnect © 2026 | Smart Coal Mine Governance & Compliance
+
+    </footer>
+
+
+    <!-- MINE COMPLIANCE PROFILE POPUP -->
+
+    <div
+        id="profileSection"
+        class="profile-overlay">
+
+        <div class="profile-box">
+
+            <div class="profile-header">
+
+                <h2>
+                    ⛏️ Mine Compliance Profile
+                </h2>
+
+                <button
+                    class="close-button"
+                    onclick="closeProfile()">
+
+                    ✕
+
+                </button>
+
+            </div>
+
+
+            <div class="profile-content">
+
+                <h3 id="profileMineName">
+                    Gevra Open Cast Mine
+                </h3>
+
+
+                <!-- BASIC INFORMATION -->
+
+                <div class="profile-info">
+
+                    <div class="info-card">
+                        <span>📍 Location</span>
+
+                        <strong id="profileLocation">
+                            Korba, Chhattisgarh
+                        </strong>
+                    </div>
+
+
+                    <div class="info-card">
+                        <span>⛏️ Mine Type</span>
+
+                        <strong id="profileType">
+                            Open Cast Mine
+                        </strong>
+                    </div>
+
+
+                    <div class="info-card">
+                        <span>🏢 Owner / Company</span>
+
+                        <strong id="profileOwner">
+                            South Eastern Coalfields Limited
+                        </strong>
+                    </div>
+
+
+                    <div class="info-card">
+                        <span>👷 Number of Workers</span>
+
+                        <strong id="profileWorkers">
+                            4,850
+                        </strong>
+                    </div>
+
+
+                    <div class="info-card">
+                        <span>⚙️ Production Capacity</span>
+
+                        <strong id="profileCapacity">
+                            50 Million Tonnes/Year
+                        </strong>
+                    </div>
+
+
+                    <div class="info-card">
+                        <span>📊 Current Production</span>
+
+                        <strong id="profileProduction">
+                            42 Million Tonnes/Year
+                        </strong>
+                    </div>
+
+
+                    <div class="info-card">
+                        <span>📅 Last Inspection</span>
+
+                        <strong id="profileInspection">
+                            15 Sept 2026
+                        </strong>
+                    </div>
+
+
+                    <div class="info-card">
+                        <span>🟢 Overall Compliance</span>
+
+                        <strong id="profileCompliance">
+                            82%
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- COMPLIANCE DETAILS -->
+
+                <div class="compliance-details">
+
+                    <div class="detail-card">
+
+                        <h4>🦺 Safety Compliance</h4>
+
+                        <p>🟢 Safety equipment</p>
+                        <p>🟢 Worker safety training</p>
+                        <p>🟡 Emergency preparedness</p>
+                        <p>🟢 Accident records</p>
+
+                    </div>
+
+
+                    <div class="detail-card">
+
+                        <h4>🌱 Environmental Compliance</h4>
+
+                        <p>🟢 Air pollution monitoring</p>
+                        <p>🟡 Water management</p>
+                        <p>🟢 Waste management</p>
+                        <p>🟡 Land requirements</p>
+
+                    </div>
+
+
+                    <div class="detail-card">
+
+                        <h4>👷 Labour Compliance</h4>
+
+                        <p>🟢 Worker records</p>
+                        <p>🟢 Working hours</p>
+                        <p>🟢 Welfare facilities</p>
+                        <p>🟡 Labour requirements</p>
+
+                    </div>
+
+
+                    <div class="detail-card">
+
+                        <h4>📋 Production Compliance</h4>
+
+                        <p>🟢 Production records</p>
+                        <p>🟢 Permits</p>
+                        <p>🟢 Production targets</p>
+                        <p>🟢 Required documents</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- NEW INSPECTION POPUP -->
+
+    <div
+        id="inspectionSection"
+        class="profile-overlay"
+        style="display:none;">
+
+        <div
+            class="profile-box"
+            style="max-width:700px;">
+
+            <div class="profile-header">
+
+                <div>
+
+                    <h2>
+                        🔍 New Mine Inspection
+                    </h2>
+
+                    <p>
+                        Record and submit a new mine inspection
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="close-button"
+                    onclick="closeInspection()">
+
+                    ✕
+
+                </button>
+
+            </div>
+
+
+            <div class="profile-content">
+
+
+                <!-- INSPECTOR + MINE DETAILS -->
+
+                <div class="profile-info">
+
+
+                    <div class="info-card">
+
+                        <label>
+                            Inspector Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="inspectorName"
+                            placeholder="Enter inspector name">
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <label>
+                            Inspector ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="inspectorId"
+                            placeholder="Enter inspector ID">
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <label>
+                            Mine Name
+                        </label>
+
+                        <select id="inspectionMine">
+
+                            <option>
+                                Gevra Open Cast Mine
+                            </option>
+
+                            <option>
+                                Jharia Coalfield
+                            </option>
+
+                            <option>
+                                Kusmunda Open Cast Mine
+                            </option>
+
+                            <option>
+                                Dipka Open Cast Project
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <label>
+                            Inspection Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="inspectionDate">
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <label>
+                            Inspection Type
+                        </label>
+
+                        <select id="inspectionType">
+
+                            <option>Safety</option>
+                            <option>Environment</option>
+                            <option>Labour</option>
+                            <option>Production</option>
+                            <option>General</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <label>
+                            Inspection Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="inspectionLocation"
+                            placeholder="Example: Main Mining Area">
+
+                    </div>
+
+                </div>
+
+
+                <!-- COMMENTS -->
+
+                <div class="info-card">
+
+                    <label>
+                        Observation / Comments
+                    </label>
+
+                    <textarea
+                        id="inspectionComments"
+                        placeholder="Enter your inspection findings..."
+                        rows="5"></textarea>
+
+                </div>
+
+
+                <!-- FILE -->
+
+                <div class="info-card">
+
+                    <label>
+                        📎 Upload Photo / Document
+                    </label>
+
+                    <input
+                        type="file"
+                        id="inspectionFile"
+                        accept="image/*,.pdf,.doc,.docx">
+
+                    <small>
+                        Upload an inspection photo or document.
+                    </small>
+
+                </div>
+
+
+                <!-- GPS -->
+
+                <div class="info-card">
+
+                    <label>
+                        📍 GPS Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="inspectionGPS"
+                        value="22.3595, 82.7501"
+                        placeholder="GPS coordinates">
+
+                    <small>
+                        Sample GPS location for prototype
+                    </small>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    class="profile-button"
+                    onclick="submitInspection()">
+
+                    ✅ Submit Inspection
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        /* =========================
+           MINE DATA
+        ========================= */
+
+        const mineData = {
+
+            gevra: {
+                name: "Gevra Open Cast Mine",
+                overall: 82,
+                safety: 90,
+                environment: 75,
+                labour: 85,
+                production: 88,
+                location: "Korba, Chhattisgarh",
+                type: "Open Cast Mine",
+                owner: "South Eastern Coalfields Limited",
+                workers: "4,850",
+                capacity: "50 Million Tonnes/Year",
+                currentProduction: "42 Million Tonnes/Year",
+                inspection: "15 Sept 2026"
+            },
+
+            jharia: {
+                name: "Jharia Coalfield",
+                overall: 76,
+                safety: 82,
+                environment: 68,
+                labour: 80,
+                production: 74,
+                location: "Dhanbad, Jharkhand",
+                type: "Coalfield",
+                owner: "Bharat Coking Coal Limited",
+                workers: "3,600",
+                capacity: "35 Million Tonnes/Year",
+                currentProduction: "27 Million Tonnes/Year",
+                inspection: "12 Sept 2026"
+            },
+
+            kusmunda: {
+                name: "Kusmunda Open Cast Mine",
+                overall: 91,
+                safety: 94,
+                environment: 88,
+                labour: 90,
+                production: 92,
+                location: "Korba, Chhattisgarh",
+                type: "Open Cast Mine",
+                owner: "South Eastern Coalfields Limited",
+                workers: "4,200",
+                capacity: "50 Million Tonnes/Year",
+                currentProduction: "46 Million Tonnes/Year",
+                inspection: "17 Sept 2026"
+            },
+
+            dipka: {
+                name: "Dipka Open Cast Project",
+                overall: 69,
+                safety: 72,
+                environment: 61,
+                labour: 75,
+                production: 70,
+                location: "Korba, Chhattisgarh",
+                type: "Open Cast Project",
+                owner: "South Eastern Coalfields Limited",
+                workers: "3,900",
+                capacity: "40 Million Tonnes/Year",
+                currentProduction: "28 Million Tonnes/Year",
+                inspection: "10 Sept 2026"
+            }
+
+        };
+
+
+        /* =========================
+           CHANGE MINE
+        ========================= */
+
+        function changeMine() {
+
+            const mine =
+                document.getElementById("mineSelect").value;
+
+            const selected =
+                mineData[mine];
+
+
+            document.getElementById("mineTitle")
+                .textContent = selected.name;
+
+
+            document.getElementById("overallPercentage")
+                .textContent = selected.overall + "%";
+
+            document.getElementById("safetyPercentage")
+                .textContent = selected.safety + "%";
+
+            document.getElementById("environmentPercentage")
+                .textContent = selected.environment + "%";
+
+            document.getElementById("labourPercentage")
+                .textContent = selected.labour + "%";
+
+            document.getElementById("productionPercentage")
+                .textContent = selected.production + "%";
+
+
+            document.getElementById("overallBar")
+                .style.width = selected.overall + "%";
+
+            document.getElementById("safetyBar")
+                .style.width = selected.safety + "%";
+
+            document.getElementById("environmentBar")
+                .style.width = selected.environment + "%";
+
+            document.getElementById("labourBar")
+                .style.width = selected.labour + "%";
+
+            document.getElementById("productionBar")
+                .style.width = selected.production + "%";
+
+
+            const status =
+                document.getElementById("mineStatus");
+
+
+            if (selected.overall >= 85) {
+
+                status.textContent =
+                    "🟢 Good Compliance";
+
+            }
+
+            else if (selected.overall >= 70) {
+
+                status.textContent =
+                    "🟡 Needs Attention";
+
+            }
+
+            else {
+
+                status.textContent =
+                    "🔴 High Risk";
+
+            }
+
+        }
+
+
+        /* =========================
+           OPEN PROFILE
+        ========================= */
+
+        function showProfile() {
+
+            const mine =
+                document.getElementById("mineSelect").value;
+
+            const selected =
+                mineData[mine];
+
+
+            document.getElementById("profileMineName")
+                .textContent = selected.name;
+
+            document.getElementById("profileLocation")
+                .textContent = selected.location;
+
+            document.getElementById("profileType")
+                .textContent = selected.type;
+
+            document.getElementById("profileOwner")
+                .textContent = selected.owner;
+
+            document.getElementById("profileWorkers")
+                .textContent = selected.workers;
+
+            document.getElementById("profileCapacity")
+                .textContent = selected.capacity;
+
+            document.getElementById("profileProduction")
+                .textContent = selected.currentProduction;
+
+            document.getElementById("profileInspection")
+                .textContent = selected.inspection;
+
+            document.getElementById("profileCompliance")
+                .textContent = selected.overall + "%";
+
+
+            document.getElementById("profileSection")
+                .style.display = "block";
+
+        }
+
+
+        /* =========================
+           CLOSE PROFILE
+        ========================= */
+
+        function closeProfile() {
+
+            document.getElementById("profileSection")
+                .style.display = "none";
+
+        }
+
+
+        /* =========================
+           OPEN INSPECTION
+        ========================= */
+
+        function openInspection() {
+
+            document.getElementById("inspectionSection")
+                .style.display = "flex";
+
+        }
+
+
+        /* =========================
+           CLOSE INSPECTION
+        ========================= */
+
+        function closeInspection() {
+
+            document.getElementById("inspectionSection")
+                .style.display = "none";
+
+        }
+
+
+        /* =========================
+           SUBMIT INSPECTION
+        ========================= */
+
+        function submitInspection() {
+
+
+            /* GET FORM VALUES */
+
+            const inspectorName =
+                document.getElementById("inspectorName")
+                    .value.trim();
+
+
+            const inspectorId =
+                document.getElementById("inspectorId")
+                    .value.trim();
+
+
+            const mine =
+                document.getElementById("inspectionMine")
+                    .value;
+
+
+            const date =
+                document.getElementById("inspectionDate")
+                    .value;
+
+
+            const inspectionType =
+                document.getElementById("inspectionType")
+                    .value;
+
+
+            const inspectionFile =
+                document.getElementById("inspectionFile")
+                    .files[0];
+
+
+            /* VALIDATION */
+
+            if (
+                inspectorName === "" ||
+                inspectorId === "" ||
+                date === ""
+            ) {
+
+                alert(
+                    "Please fill Inspector Name, Inspector ID and Inspection Date."
+                );
+
+                return;
+
+            }
+
+
+            /* GENERATE INSPECTION ID */
+
+            const inspectionId =
+                "INS-" +
+                Math.floor(
+                    1000 + Math.random() * 9000
+                );
+
+
+            /* FORMAT DATE */
+
+            const dateObject =
+                new Date(date + "T00:00:00");
+
+
+            const formattedDate =
+                dateObject.toLocaleDateString(
+                    "en-GB",
+                    {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric"
+                    }
+                );
+
+
+            /* GET TABLE */
+
+            const tableBody =
+                document.getElementById(
+                    "inspectionHistory"
+                );
+
+
+            /* CREATE NEW ROW */
+
+            const newRow =
+                document.createElement("tr");
+
+
+            /* CREATE TABLE CELLS */
+
+            const idCell =
+                document.createElement("td");
+
+            idCell.textContent =
+                inspectionId;
+
+
+            const mineCell =
+                document.createElement("td");
+
+            mineCell.textContent =
+                mine;
+
+
+            const inspectorCell =
+                document.createElement("td");
+
+            inspectorCell.textContent =
+                inspectorName;
+
+
+            const dateCell =
+                document.createElement("td");
+
+            dateCell.textContent =
+                formattedDate;
+
+
+            const typeCell =
+                document.createElement("td");
+
+            typeCell.textContent =
+                inspectionType;
+
+
+            const statusCell =
+                document.createElement("td");
+
+
+            const statusBadge =
+                document.createElement("span");
+
+            statusBadge.className =
+                "status-badge pending";
+
+            statusBadge.textContent =
+                "Under Review";
+
+
+            statusCell.appendChild(
+                statusBadge
+            );
+
+
+            /* FILE CELL */
+
+            const fileCell =
+                document.createElement("td");
+
+
+            if (inspectionFile) {
+
+                const fileURL =
+                    URL.createObjectURL(
+                        inspectionFile
+                    );
+
+
+                const fileButton =
+                    document.createElement("a");
+
+
+                fileButton.href =
+                    fileURL;
+
+
+                fileButton.target =
+                    "_blank";
+
+
+                fileButton.className =
+                    "file-button";
+
+
+                fileButton.textContent =
+                    "📎 View File";
+
+
+                fileButton.title =
+                    inspectionFile.name;
+
+
+                fileCell.appendChild(
+                    fileButton
+                );
+
+            }
+
+            else {
+
+                const noFile =
+                    document.createElement("span");
+
+                noFile.className =
+                    "no-file";
+
+                noFile.textContent =
+                    "No file";
+
+                fileCell.appendChild(
+                    noFile
+                );
+
+            }
+
+
+            /* ADD CELLS TO ROW */
+
+            newRow.appendChild(idCell);
+
+            newRow.appendChild(mineCell);
+
+            newRow.appendChild(inspectorCell);
+
+            newRow.appendChild(dateCell);
+
+            newRow.appendChild(typeCell);
+
+            newRow.appendChild(statusCell);
+
+            newRow.appendChild(fileCell);
+
+
+            /* ADD NEW ROW TO TOP */
+
+            tableBody.insertBefore(
+                newRow,
+                tableBody.firstChild
+            );
+
+
+            /* SUCCESS MESSAGE */
+
+            alert(
+                "✅ Inspection submitted successfully!\n\n" +
+
+                "Inspection ID: " +
+                inspectionId + "\n" +
+
+                "Mine: " +
+                mine + "\n" +
+
+                "Inspector: " +
+                inspectorName + "\n" +
+
+                "Date: " +
+                formattedDate + "\n" +
+
+                "Status: Under Review"
+            );
+
+
+            /* CLOSE FORM */
+
+            closeInspection();
+
+
+            /* CLEAR FORM */
+
+            document.getElementById(
+                "inspectorName"
+            ).value = "";
+
+
+            document.getElementById(
+                "inspectorId"
+            ).value = "";
+
+
+            document.getElementById(
+                "inspectionDate"
+            ).value = "";
+
+
+            document.getElementById(
+                "inspectionLocation"
+            ).value = "";
+
+
+            document.getElementById(
+                "inspectionComments"
+            ).value = "";
+
+
+            document.getElementById(
+                "inspectionGPS"
+            ).value =
+                "22.3595, 82.7501";
+
+
+            document.getElementById(
+                "inspectionFile"
+            ).value = "";
+
+        }
+
+    </script>
+
+</body>
+</html>

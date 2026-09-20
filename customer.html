@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CoalConnect - Customer</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f5;
+        }
+
+        .header {
+            background-color: #222222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+        }
+
+        .button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            background-color: #e69b00;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #c98200;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>CoalConnect</h1>
+        <p>Customer - Coal Requirement</p>
+    </div>
+
+    <div class="container">
+
+        <h2>Find Coal</h2>
+
+        <label>Coal Quality</label>
+        <select>
+            <option>High Quality</option>
+            <option>Medium Quality</option>
+            <option>Low Quality</option>
+        </select>
+
+        <label>Quantity (Tons)</label>
+        <input type="number" placeholder="Enter quantity">
+
+        <label>Select Coal Mine</label>
+        <select>
+            <option>Example Coal Mine A</option>
+            <option>Example Coal Mine B</option>
+            <option>Example Coal Mine C</option>
+        </select>
+
+        <label>Delivery Location</label>
+        <input type="text" placeholder="Enter delivery location">
+
+        <button class="button" onclick="findCoal()">Find Coal</button>
+        <div id="results"></div>
+        <button class="button" onclick="compareMines()">Compare Mines</button>
+    </div>
+<script>
+    function findCoal() {
+        document.getElementById("results").innerHTML = `
+            <div style="background-color:white; margin-top:25px; padding:20px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.12);">
+                <h2>Coal Mine Result</h2>
+                <p><strong>Mine:</strong> Example Coal Mine A</p>
+                <p><strong>Coal Quality:</strong> High Quality</p>
+                <p><strong>Available Quantity:</strong> 5,000 Tons</p>
+                <p><strong>Approximate Distance:</strong> 120 km</p>
+                <p><strong>Estimated Delivery Time:</strong> 3-4 hours</p>
+                <p><strong>Delivery Location:</strong> Your selected location</p>
+                <div style="background-color:white; margin-top:20px; padding:20px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.12);">
+    <h2>Coal Mine Result</h2>
+    <p><strong>Mine:</strong> Example Coal Mine B</p>
+    <p><strong>Coal Quality:</strong> Medium Quality</p>
+    <p><strong>Available Quantity:</strong> 3,500 Tons</p>
+    <p><strong>Approximate Distance:</strong> 180 km</p>
+    <p><strong>Estimated Delivery Time:</strong> 5-6 hours</p>
+    <p><strong>Delivery Location:</strong> Your selected location</p>
+</div>
+            </div>
+        `;
+    }
+    function compareMines() {
+    document.getElementById("results").innerHTML += `
+        <div style="background-color:white; margin-top:25px; padding:20px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.12);">
+            <h2>Compare Mines</h2>
+
+            <p><strong>Mine A:</strong> High Quality | 5,000 Tons | 120 km | 3-4 hours</p>
+
+            <p><strong>Mine B:</strong> Medium Quality | 3,500 Tons | 180 km | 5-6 hours</p>
+        </div>
+    `;
+}
+</script>
+</body>
+</html>
