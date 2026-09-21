@@ -150,6 +150,14 @@
             border-radius: 10px;
             box-shadow: 0 3px 8px rgba(0,0,0,0.08);
             font-size: 14px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .feature-point:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+            background-color: #f5fbf7;
         }
 
         /* MAIN BUTTON */
@@ -267,6 +275,14 @@
             .main-feature h2 {
                 font-size: 25px;
             }
+
+            .feature-points {
+                flex-direction: column;
+            }
+
+            .feature-point {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -307,7 +323,9 @@
 
         <div class="feature-content">
 
-            <span class="feature-label">⭐ MAIN FOCUS OF COALCONNECT</span>
+            <span class="feature-label">
+                ⭐ MAIN FOCUS OF COALCONNECT
+            </span>
 
             <h2>🏛️ Governance & Compliance</h2>
 
@@ -320,26 +338,50 @@
                 authorities make compliance monitoring simpler and more transparent.
             </p>
 
+            <!-- GOVERNANCE OPTIONS -->
             <div class="feature-points">
 
-                <div class="feature-point">🔍 Digital Inspections</div>
+                <!-- DIGITAL INSPECTION -->
+                <div class="feature-point"
+                     onclick="openDigitalInspection()">
+                    🔍 Digital Inspections
+                </div>
 
-                <div class="feature-point">⚠️ Violation Detection</div>
+                <!-- VIOLATION DETECTION -->
+                <div class="feature-point"
+                     onclick="openViolationDetection()">
+                    ⚠️ Violation Detection
+                </div>
 
-                <div class="feature-point">🛠️ Corrective Actions</div>
+                <!-- CORRECTIVE ACTIONS -->
+                <div class="feature-point"
+                     onclick="openCorrectiveActions()">
+                    🛠️ Corrective Actions
+                </div>
 
-                <div class="feature-point" onclick="window.location.href='ai-risk.html'">
-    🤖 AI Risk Analysis
-</div>
+                <!-- AI RISK ANALYSIS -->
+                <div class="feature-point"
+                     onclick="openAIRisk()">
+                    🤖 AI Risk Analysis
+                </div>
 
-                <div class="feature-point">📊 Compliance Reports</div>
+                <!-- COMPLIANCE REPORTS -->
+                <div class="feature-point"
+                     onclick="openComplianceReports()">
+                    📊 Compliance Reports
+                </div>
 
-                <div class="feature-point">🔔 Smart Alerts</div>
+                <!-- SMART ALERTS -->
+                <div class="feature-point"
+                     onclick="openSmartAlerts()">
+                    🔔 Smart Alerts
+                </div>
 
             </div>
 
+            <!-- MAIN GOVERNANCE BUTTON -->
             <button class="main-button"
-                onclick="window.location.href='governance.html'">
+                    onclick="openGovernance()">
                 Explore Governance & Compliance →
             </button>
 
@@ -348,7 +390,9 @@
     </div>
 
     <!-- OTHER FEATURES -->
-    <h2 class="other-title">Explore Other CoalConnect Features</h2>
+    <h2 class="other-title">
+        Explore Other CoalConnect Features
+    </h2>
 
     <p class="other-subtitle">
         CoalConnect provides several other services for the coal industry.
@@ -358,77 +402,97 @@
 
         <!-- CUSTOMER -->
         <div class="feature-card">
+
             <div class="feature-icon">🏭</div>
+
             <h3>Coal & Customer Services</h3>
+
             <p>
                 Find coal mines and explore coal-related options
                 for different industries.
             </p>
 
             <button class="small-button"
-                onclick="window.location.href='customer.html'">
+                    onclick="window.location.href='customer.html'">
                 Explore
             </button>
+
         </div>
 
         <!-- JOBS -->
         <div class="feature-card">
+
             <div class="feature-icon">👷</div>
+
             <h3>Employment & Jobs</h3>
+
             <p>
                 Find employment opportunities in coal mining
                 and related industries.
             </p>
 
             <button class="small-button"
-                onclick="window.location.href='jobseeker.html'">
+                    onclick="window.location.href='jobseeker.html'">
                 Find Jobs
             </button>
+
         </div>
 
         <!-- MINES -->
         <div class="feature-card">
+
             <div class="feature-icon">⛏️</div>
+
             <h3>Mine Information</h3>
+
             <p>
                 Explore information about coal mines,
                 locations and mining activities.
             </p>
 
             <button class="small-button"
-                onclick="window.location.href='collector.html'">
+                    onclick="window.location.href='collector.html'">
                 Explore Mines
             </button>
+
         </div>
 
         <!-- INFORMATION -->
         <div class="feature-card">
+
             <div class="feature-icon">📢</div>
+
             <h3>Information & Updates</h3>
+
             <p>
                 Submit useful information and updates
                 related to coal mines.
             </p>
 
             <button class="small-button"
-                onclick="window.location.href='giver.html'">
+                    onclick="window.location.href='giver.html'">
                 Submit Information
             </button>
+
         </div>
 
         <!-- NOTIFICATIONS -->
         <div class="feature-card">
+
             <div class="feature-icon">🔔</div>
+
             <h3>Alerts & Notifications</h3>
+
             <p>
                 Stay updated with important CoalConnect
                 alerts and notifications.
             </p>
 
             <button class="small-button"
-                onclick="window.location.href='notifications.html'">
+                    onclick="window.location.href='notifications.html'">
                 View Alerts
             </button>
+
         </div>
 
     </div>
@@ -437,12 +501,46 @@
     <footer>
         CoalConnect © 2026 | Connecting the Coal Industry
     </footer>
-<script>
 
-function openAIRisk() {
-    window.location.href = "ai-risk.html";
-}
+    <!-- JAVASCRIPT -->
+    <script>
 
-</script>
+        /* GOVERNANCE DASHBOARD */
+        function openGovernance() {
+            window.location.href = "governance.html";
+        }
+
+        /* DIGITAL INSPECTION */
+        function openDigitalInspection() {
+            window.location.href = "governance.html#inspection";
+        }
+
+        /* VIOLATION DETECTION */
+        function openViolationDetection() {
+            window.location.href = "governance.html#violation";
+        }
+
+        /* CORRECTIVE ACTIONS */
+        function openCorrectiveActions() {
+            window.location.href = "governance.html#corrective";
+        }
+
+        /* AI RISK ANALYSIS */
+        function openAIRisk() {
+            window.location.href = "ai-risk.html";
+        }
+
+        /* COMPLIANCE REPORTS */
+        function openComplianceReports() {
+            window.location.href = "reports.html";
+        }
+
+        /* SMART ALERTS */
+        function openSmartAlerts() {
+            window.location.href = "notifications.html";
+        }
+
+    </script>
+
 </body>
 </html>

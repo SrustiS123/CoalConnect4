@@ -58,6 +58,7 @@
             text-decoration: none;
             margin: 0 12px;
             font-size: 14px;
+            cursor: pointer;
         }
 
         nav a:hover {
@@ -364,8 +365,6 @@
             font-size: 15px;
         }
 
-        /* INSPECTION FORM */
-
         .info-card label {
             display: block;
             color: #4f5e54;
@@ -474,7 +473,7 @@
             color: #707a73;
         }
 
-        /* INSPECTION HISTORY */
+        /* TABLE SECTIONS */
 
         .section-card {
             width: 92%;
@@ -483,7 +482,7 @@
             background: white;
             border-radius: 20px;
             padding: 25px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
         }
 
         .section-title h2 {
@@ -551,7 +550,44 @@
             color: #dc2626;
         }
 
-        /* FILE BUTTON */
+        .severity-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .severity-high {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .severity-medium {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .severity-low {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .priority-high {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .priority-medium {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .priority-low {
+            background: #dcfce7;
+            color: #15803d;
+        }
 
         .file-button {
             display: inline-block;
@@ -573,6 +609,93 @@
             color: #9ca3af;
         }
 
+        /* MODAL */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: #31543c;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .modal-content select,
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 22px;
+            padding: 13px;
+            background: #b42323;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background: #941d1d;
+        }
+
+        .corrective-submit-btn {
+            width: 100%;
+            margin-top: 22px;
+            padding: 13px;
+            background: linear-gradient(135deg, #2e8b57, #216b43);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .corrective-submit-btn:hover {
+            background: #1d6b42;
+        }
+
+        .close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: #555;
+        }
+
         /* FOOTER */
 
         footer {
@@ -582,8 +705,6 @@
             padding: 18px;
             font-size: 13px;
         }
-
-        /* MOBILE */
 
         @media (max-width: 600px) {
 
@@ -617,7 +738,6 @@
     </style>
 </head>
 
-
 <body>
 
     <!-- HEADER -->
@@ -641,16 +761,27 @@
     <nav>
 
         <a href="dashboard.html">Home</a>
-        <a href="#">Dashboard</a>
-        <a href="#">Mines</a>
-        <a href="#">Inspections</a>
-        <a href="#">Violations</a>
-        <a href="#">Corrective Actions</a>
-        <a href="#">AI Risk</a>
-        <a href="#">Contractors</a>
-        <a href="#">Documents</a>
-        <a href="#">Map</a>
-        <a href="#">Reports</a>
+
+        <a href="dashboard.html">Dashboard</a>
+
+        <a href="dashboard.html">Mines</a>
+
+        <a href="javascript:openInspection()">Inspections</a>
+
+        <a href="javascript:openViolation()">Violations</a>
+
+        <a href="javascript:openCorrectiveAction()">Corrective Actions</a>
+
+        <a href="ai-risk.html">AI Risk</a>
+
+        <a href="dashboard.html">Contractors</a>
+
+        <a href="documents.html">Documents</a>
+
+        <a href="dashboard.html">Map</a>
+
+        <a href="reports.html">Reports</a>
+
         <a href="notifications.html">Notifications</a>
 
     </nav>
@@ -670,32 +801,51 @@
     </div>
 
 
-    <!-- SUMMARY CARDS -->
+    <!-- SUMMARY -->
 
     <div class="summary">
 
         <div class="summary-card green">
+
             <div class="summary-icon">🟢</div>
+
             <h3>Compliant Mines</h3>
+
             <div class="number">2</div>
+
         </div>
+
 
         <div class="summary-card yellow">
+
             <div class="summary-icon">🟡</div>
+
             <h3>Pending Compliance</h3>
+
             <div class="number">1</div>
+
         </div>
+
 
         <div class="summary-card red">
+
             <div class="summary-icon">🔴</div>
+
             <h3>High-Risk Mines</h3>
+
             <div class="number">1</div>
+
         </div>
 
+
         <div class="summary-card orange">
+
             <div class="summary-icon">⚠️</div>
+
             <h3>Open Violations</h3>
-            <div class="number">7</div>
+
+            <div class="number" id="openViolationsCount">7</div>
+
         </div>
 
     </div>
@@ -728,8 +878,6 @@
         </select>
 
 
-        <!-- COMPLIANCE -->
-
         <div class="compliance">
 
             <div class="mine-title">
@@ -744,8 +892,6 @@
 
             </div>
 
-
-            <!-- OVERALL -->
 
             <div class="progress-item">
 
@@ -770,16 +916,16 @@
             </div>
 
 
-            <!-- SAFETY -->
-
             <div class="progress-item">
 
                 <div class="progress-label">
+
                     <span>Safety</span>
 
                     <span class="percentage" id="safetyPercentage">
                         90%
                     </span>
+
                 </div>
 
                 <div class="progress-bar">
@@ -795,16 +941,16 @@
             </div>
 
 
-            <!-- ENVIRONMENT -->
-
             <div class="progress-item">
 
                 <div class="progress-label">
+
                     <span>Environment</span>
 
                     <span class="percentage" id="environmentPercentage">
                         75%
                     </span>
+
                 </div>
 
                 <div class="progress-bar">
@@ -820,16 +966,16 @@
             </div>
 
 
-            <!-- LABOUR -->
-
             <div class="progress-item">
 
                 <div class="progress-label">
+
                     <span>Labour</span>
 
                     <span class="percentage" id="labourPercentage">
                         85%
                     </span>
+
                 </div>
 
                 <div class="progress-bar">
@@ -845,16 +991,16 @@
             </div>
 
 
-            <!-- PRODUCTION -->
-
             <div class="progress-item">
 
                 <div class="progress-label">
+
                     <span>Production</span>
 
                     <span class="percentage" id="productionPercentage">
                         88%
                     </span>
+
                 </div>
 
                 <div class="progress-bar">
@@ -869,8 +1015,6 @@
 
             </div>
 
-
-            <!-- PROFILE BUTTON -->
 
             <button
                 class="profile-button"
@@ -894,7 +1038,9 @@
 
     <div class="quick-actions">
 
-        <div class="action" onclick="openInspection()">
+        <div
+            class="action"
+            onclick="openInspection()">
 
             <div class="action-icon">🔍</div>
 
@@ -905,7 +1051,9 @@
         </div>
 
 
-        <div class="action">
+        <div
+            class="action"
+            onclick="openViolation()">
 
             <div class="action-icon">⚠️</div>
 
@@ -916,7 +1064,9 @@
         </div>
 
 
-        <div class="action">
+        <div
+            class="action"
+            onclick="openCorrectiveAction()">
 
             <div class="action-icon">🛠️</div>
 
@@ -927,7 +1077,9 @@
         </div>
 
 
-        <div class="action">
+        <div
+            class="action"
+            onclick="openAIRisk()">
 
             <div class="action-icon">🤖</div>
 
@@ -938,7 +1090,9 @@
         </div>
 
 
-        <div class="action">
+        <div
+            class="action"
+            onclick="openDocuments()">
 
             <div class="action-icon">📄</div>
 
@@ -949,7 +1103,9 @@
         </div>
 
 
-        <div class="action">
+        <div
+            class="action"
+            onclick="openReports()">
 
             <div class="action-icon">📊</div>
 
@@ -968,15 +1124,11 @@
 
         <div class="section-title">
 
-            <div>
+            <h2>📋 Inspection History</h2>
 
-                <h2>📋 Inspection History</h2>
-
-                <p>
-                    View previous mine inspections and their current status.
-                </p>
-
-            </div>
+            <p>
+                View previous mine inspections and their current status.
+            </p>
 
         </div>
 
@@ -1004,24 +1156,20 @@
 
                 <tbody id="inspectionHistory">
 
-                    <!-- SAMPLE INSPECTION 1 -->
-
                     <tr>
 
                         <td>INS-4821</td>
-
                         <td>Gevra Open Cast Mine</td>
-
                         <td>Rahul</td>
-
                         <td>20 Sept 2026</td>
-
                         <td>Safety</td>
 
                         <td>
+
                             <span class="status-badge pending">
                                 Under Review
                             </span>
+
                         </td>
 
                         <td>
@@ -1030,25 +1178,21 @@
 
                     </tr>
 
-
-                    <!-- SAMPLE INSPECTION 2 -->
 
                     <tr>
 
                         <td>INS-3176</td>
-
                         <td>Jharia Coalfield</td>
-
                         <td>Anil</td>
-
                         <td>18 Sept 2026</td>
-
                         <td>Environment</td>
 
                         <td>
+
                             <span class="status-badge completed">
                                 Completed
                             </span>
+
                         </td>
 
                         <td>
@@ -1058,24 +1202,299 @@
                     </tr>
 
 
-                    <!-- SAMPLE INSPECTION 3 -->
-
                     <tr>
 
                         <td>INS-2654</td>
-
                         <td>Kusmunda Open Cast Mine</td>
-
                         <td>Priya</td>
-
                         <td>17 Sept 2026</td>
-
                         <td>General</td>
 
                         <td>
+
                             <span class="status-badge violation">
                                 Violation Found
                             </span>
+
+                        </td>
+
+                        <td>
+                            <span class="no-file">—</span>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- VIOLATION HISTORY -->
+
+    <div class="section-card">
+
+        <div class="section-title">
+
+            <h2>⚠️ Violation History</h2>
+
+            <p>
+                View reported compliance violations and their current status.
+            </p>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table class="inspection-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Violation ID</th>
+                        <th>Mine</th>
+                        <th>Type</th>
+                        <th>Severity</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>File</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="violationHistory">
+
+                    <tr>
+
+                        <td>VIO-5821</td>
+                        <td>Gevra Open Cast Mine</td>
+                        <td>Safety</td>
+
+                        <td>
+
+                            <span class="severity-badge severity-high">
+                                🔴 High
+                            </span>
+
+                        </td>
+
+                        <td>19 Sept 2026</td>
+
+                        <td>
+
+                            <span class="status-badge pending">
+                                Under Review
+                            </span>
+
+                        </td>
+
+                        <td>
+                            <span class="no-file">—</span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>VIO-4372</td>
+                        <td>Jharia Coalfield</td>
+                        <td>Environmental</td>
+
+                        <td>
+
+                            <span class="severity-badge severity-medium">
+                                🟡 Medium
+                            </span>
+
+                        </td>
+
+                        <td>16 Sept 2026</td>
+
+                        <td>
+
+                            <span class="status-badge pending">
+                                Action Required
+                            </span>
+
+                        </td>
+
+                        <td>
+                            <span class="no-file">—</span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>VIO-2918</td>
+                        <td>Kusmunda Open Cast Mine</td>
+                        <td>Equipment</td>
+
+                        <td>
+
+                            <span class="severity-badge severity-low">
+                                🟢 Low
+                            </span>
+
+                        </td>
+
+                        <td>14 Sept 2026</td>
+
+                        <td>
+
+                            <span class="status-badge completed">
+                                Resolved
+                            </span>
+
+                        </td>
+
+                        <td>
+                            <span class="no-file">—</span>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- CORRECTIVE ACTION HISTORY -->
+
+    <div class="section-card" id="correctiveActionHistory">
+
+        <div class="section-title">
+
+            <h2>🛠️ Corrective Action History</h2>
+
+            <p>
+                Track corrective actions assigned to resolve mine compliance issues.
+            </p>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table class="inspection-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Action ID</th>
+                        <th>Mine</th>
+                        <th>Related Issue</th>
+                        <th>Responsible Person</th>
+                        <th>Due Date</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>File</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="correctiveActionHistoryBody">
+
+                    <tr>
+
+                        <td>CA-2041</td>
+                        <td>Gevra Open Cast Mine</td>
+                        <td>Worker Safety Training</td>
+                        <td>Rahul</td>
+                        <td>25 Sept 2026</td>
+
+                        <td>
+
+                            <span class="severity-badge priority-high">
+                                🔴 High
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span class="status-badge pending">
+                                Pending
+                            </span>
+
+                        </td>
+
+                        <td>
+                            <span class="no-file">—</span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>CA-1837</td>
+                        <td>Jharia Coalfield</td>
+                        <td>Water Management</td>
+                        <td>Anil</td>
+                        <td>28 Sept 2026</td>
+
+                        <td>
+
+                            <span class="severity-badge priority-medium">
+                                🟡 Medium
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span class="status-badge pending">
+                                In Progress
+                            </span>
+
+                        </td>
+
+                        <td>
+                            <span class="no-file">—</span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>CA-1624</td>
+                        <td>Kusmunda Open Cast Mine</td>
+                        <td>Equipment Maintenance</td>
+                        <td>Priya</td>
+                        <td>22 Sept 2026</td>
+
+                        <td>
+
+                            <span class="severity-badge priority-low">
+                                🟢 Low
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span class="status-badge completed">
+                                Completed
+                            </span>
+
                         </td>
 
                         <td>
@@ -1134,85 +1553,97 @@
                 </h3>
 
 
-                <!-- BASIC INFORMATION -->
-
                 <div class="profile-info">
 
                     <div class="info-card">
+
                         <span>📍 Location</span>
 
                         <strong id="profileLocation">
                             Korba, Chhattisgarh
                         </strong>
+
                     </div>
 
 
                     <div class="info-card">
+
                         <span>⛏️ Mine Type</span>
 
                         <strong id="profileType">
                             Open Cast Mine
                         </strong>
+
                     </div>
 
 
                     <div class="info-card">
+
                         <span>🏢 Owner / Company</span>
 
                         <strong id="profileOwner">
                             South Eastern Coalfields Limited
                         </strong>
+
                     </div>
 
 
                     <div class="info-card">
+
                         <span>👷 Number of Workers</span>
 
                         <strong id="profileWorkers">
                             4,850
                         </strong>
+
                     </div>
 
 
                     <div class="info-card">
+
                         <span>⚙️ Production Capacity</span>
 
                         <strong id="profileCapacity">
                             50 Million Tonnes/Year
                         </strong>
+
                     </div>
 
 
                     <div class="info-card">
+
                         <span>📊 Current Production</span>
 
                         <strong id="profileProduction">
                             42 Million Tonnes/Year
                         </strong>
+
                     </div>
 
 
                     <div class="info-card">
+
                         <span>📅 Last Inspection</span>
 
                         <strong id="profileInspection">
                             15 Sept 2026
                         </strong>
+
                     </div>
 
 
                     <div class="info-card">
+
                         <span>🟢 Overall Compliance</span>
 
                         <strong id="profileCompliance">
                             82%
                         </strong>
+
                     </div>
 
                 </div>
 
-
-                <!-- COMPLIANCE DETAILS -->
 
                 <div class="compliance-details">
 
@@ -1311,17 +1742,11 @@
 
             <div class="profile-content">
 
-
-                <!-- INSPECTOR + MINE DETAILS -->
-
                 <div class="profile-info">
-
 
                     <div class="info-card">
 
-                        <label>
-                            Inspector Name
-                        </label>
+                        <label>Inspector Name</label>
 
                         <input
                             type="text"
@@ -1333,9 +1758,7 @@
 
                     <div class="info-card">
 
-                        <label>
-                            Inspector ID
-                        </label>
+                        <label>Inspector ID</label>
 
                         <input
                             type="text"
@@ -1347,27 +1770,17 @@
 
                     <div class="info-card">
 
-                        <label>
-                            Mine Name
-                        </label>
+                        <label>Mine Name</label>
 
                         <select id="inspectionMine">
 
-                            <option>
-                                Gevra Open Cast Mine
-                            </option>
+                            <option>Gevra Open Cast Mine</option>
 
-                            <option>
-                                Jharia Coalfield
-                            </option>
+                            <option>Jharia Coalfield</option>
 
-                            <option>
-                                Kusmunda Open Cast Mine
-                            </option>
+                            <option>Kusmunda Open Cast Mine</option>
 
-                            <option>
-                                Dipka Open Cast Project
-                            </option>
+                            <option>Dipka Open Cast Project</option>
 
                         </select>
 
@@ -1376,9 +1789,7 @@
 
                     <div class="info-card">
 
-                        <label>
-                            Inspection Date
-                        </label>
+                        <label>Inspection Date</label>
 
                         <input
                             type="date"
@@ -1389,16 +1800,18 @@
 
                     <div class="info-card">
 
-                        <label>
-                            Inspection Type
-                        </label>
+                        <label>Inspection Type</label>
 
                         <select id="inspectionType">
 
                             <option>Safety</option>
+
                             <option>Environment</option>
+
                             <option>Labour</option>
+
                             <option>Production</option>
+
                             <option>General</option>
 
                         </select>
@@ -1408,9 +1821,7 @@
 
                     <div class="info-card">
 
-                        <label>
-                            Inspection Location
-                        </label>
+                        <label>Inspection Location</label>
 
                         <input
                             type="text"
@@ -1422,13 +1833,9 @@
                 </div>
 
 
-                <!-- COMMENTS -->
-
                 <div class="info-card">
 
-                    <label>
-                        Observation / Comments
-                    </label>
+                    <label>Observation / Comments</label>
 
                     <textarea
                         id="inspectionComments"
@@ -1438,13 +1845,9 @@
                 </div>
 
 
-                <!-- FILE -->
-
                 <div class="info-card">
 
-                    <label>
-                        📎 Upload Photo / Document
-                    </label>
+                    <label>📎 Upload Photo / Document</label>
 
                     <input
                         type="file"
@@ -1458,13 +1861,9 @@
                 </div>
 
 
-                <!-- GPS -->
-
                 <div class="info-card">
 
-                    <label>
-                        📍 GPS Location
-                    </label>
+                    <label>📍 GPS Location</label>
 
                     <input
                         type="text"
@@ -1478,8 +1877,6 @@
 
                 </div>
 
-
-                <!-- SUBMIT -->
 
                 <button
                     class="profile-button"
@@ -1496,548 +1893,786 @@
     </div>
 
 
-    <!-- JAVASCRIPT -->
+    <!-- REPORT VIOLATION MODAL -->
 
+    <div id="violationModal" class="modal">
+
+        <div class="modal-content">
+
+            <span
+                class="close"
+                onclick="closeViolation()">
+
+                ×
+
+            </span>
+
+
+            <h2>⚠️ Report Violation</h2>
+
+            <p>
+                Report a compliance issue found during mine operations.
+            </p>
+
+
+            <label>🏭 Mine</label>
+
+            <select id="violationMine">
+
+                <option>Gevra Open Cast Mine</option>
+
+                <option>Jharia Coalfield</option>
+
+                <option>Kusmunda Open Cast Mine</option>
+
+                <option>Dipka Open Cast Project</option>
+
+            </select>
+
+
+            <label>⚠️ Violation Type</label>
+
+            <select id="violationType">
+
+                <option>Safety</option>
+
+                <option>Environmental</option>
+
+                <option>Labour</option>
+
+                <option>Equipment</option>
+
+                <option>Other</option>
+
+            </select>
+
+
+            <label>🚨 Severity</label>
+
+            <select id="violationSeverity">
+
+                <option>High</option>
+
+                <option>Medium</option>
+
+                <option>Low</option>
+
+            </select>
+
+
+            <label>📅 Violation Date</label>
+
+            <input
+                type="date"
+                id="violationDate">
+
+
+            <label>📝 Description</label>
+
+            <textarea
+                id="violationDescription"
+                placeholder="Describe the violation..."
+                rows="4"></textarea>
+
+
+            <label>📎 Supporting File</label>
+
+            <input
+                type="file"
+                id="violationFile"
+                accept="image/*,.pdf,.doc,.docx">
+
+
+            <button
+                class="submit-btn"
+                onclick="submitViolation()">
+
+                🚨 Submit Violation
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CORRECTIVE ACTION MODAL -->
+
+    <div id="correctiveActionModal" class="modal">
+
+        <div class="modal-content">
+
+            <span
+                class="close"
+                onclick="closeCorrectiveAction()">
+
+                ×
+
+            </span>
+
+
+            <h2>🛠️ Create Corrective Action</h2>
+
+            <p>
+                Assign an action to resolve a mine compliance issue.
+            </p>
+
+
+            <label>🏭 Mine</label>
+
+            <select id="correctiveMine">
+
+                <option>Gevra Open Cast Mine</option>
+
+                <option>Jharia Coalfield</option>
+
+                <option>Kusmunda Open Cast Mine</option>
+
+                <option>Dipka Open Cast Project</option>
+
+            </select>
+
+
+            <label>⚠️ Related Issue</label>
+
+            <input
+                type="text"
+                id="correctiveIssue"
+                placeholder="Example: Safety equipment">
+
+
+            <label>👷 Responsible Person</label>
+
+            <input
+                type="text"
+                id="correctiveResponsible"
+                placeholder="Enter responsible person's name">
+
+
+            <label>📅 Due Date</label>
+
+            <input
+                type="date"
+                id="correctiveDueDate">
+
+
+            <label>🚨 Priority</label>
+
+            <select id="correctivePriority">
+
+                <option value="High">🔴 High</option>
+
+                <option value="Medium">🟡 Medium</option>
+
+                <option value="Low">🟢 Low</option>
+
+            </select>
+
+
+            <label>📝 Action Description</label>
+
+            <textarea
+                id="correctiveDescription"
+                placeholder="Describe the corrective action to be taken..."
+                rows="4"></textarea>
+
+
+            <label>📎 Supporting File</label>
+
+            <input
+                type="file"
+                id="correctiveFile"
+                accept="image/*,.pdf,.doc,.docx">
+
+
+            <button
+                class="corrective-submit-btn"
+                onclick="submitCorrectiveAction()">
+
+                ✅ Create Corrective Action
+
+            </button>
+
+        </div>
+
+    </div>
     <script>
 
-        /* =========================
-           MINE DATA
-        ========================= */
+const mineData = {
+    gevra: {
+        name: "Gevra Open Cast Mine",
+        overall: 82,
+        safety: 90,
+        environment: 75,
+        labour: 85,
+        production: 88,
+        location: "Korba, Chhattisgarh",
+        type: "Open Cast Mine",
+        owner: "South Eastern Coalfields Limited",
+        workers: "4,850",
+        capacity: "50 Million Tonnes/Year",
+        current: "42 Million Tonnes/Year",
+        inspection: "15 Sept 2026"
+    },
 
-        const mineData = {
+    jharia: {
+        name: "Jharia Coalfield",
+        overall: 76,
+        safety: 82,
+        environment: 68,
+        labour: 80,
+        production: 74,
+        location: "Dhanbad, Jharkhand",
+        type: "Coalfield",
+        owner: "Bharat Coking Coal Limited",
+        workers: "3,920",
+        capacity: "35 Million Tonnes/Year",
+        current: "27 Million Tonnes/Year",
+        inspection: "12 Sept 2026"
+    },
 
-            gevra: {
-                name: "Gevra Open Cast Mine",
-                overall: 82,
-                safety: 90,
-                environment: 75,
-                labour: 85,
-                production: 88,
-                location: "Korba, Chhattisgarh",
-                type: "Open Cast Mine",
-                owner: "South Eastern Coalfields Limited",
-                workers: "4,850",
-                capacity: "50 Million Tonnes/Year",
-                currentProduction: "42 Million Tonnes/Year",
-                inspection: "15 Sept 2026"
-            },
+    kusmunda: {
+        name: "Kusmunda Open Cast Mine",
+        overall: 91,
+        safety: 94,
+        environment: 88,
+        labour: 90,
+        production: 92,
+        location: "Korba, Chhattisgarh",
+        type: "Open Cast Mine",
+        owner: "South Eastern Coalfields Limited",
+        workers: "5,200",
+        capacity: "50 Million Tonnes/Year",
+        current: "47 Million Tonnes/Year",
+        inspection: "17 Sept 2026"
+    },
 
-            jharia: {
-                name: "Jharia Coalfield",
-                overall: 76,
-                safety: 82,
-                environment: 68,
-                labour: 80,
-                production: 74,
-                location: "Dhanbad, Jharkhand",
-                type: "Coalfield",
-                owner: "Bharat Coking Coal Limited",
-                workers: "3,600",
-                capacity: "35 Million Tonnes/Year",
-                currentProduction: "27 Million Tonnes/Year",
-                inspection: "12 Sept 2026"
-            },
+    dipka: {
+        name: "Dipka Open Cast Project",
+        overall: 69,
+        safety: 72,
+        environment: 61,
+        labour: 75,
+        production: 70,
+        location: "Korba, Chhattisgarh",
+        type: "Open Cast Project",
+        owner: "South Eastern Coalfields Limited",
+        workers: "3,600",
+        capacity: "40 Million Tonnes/Year",
+        current: "29 Million Tonnes/Year",
+        inspection: "10 Sept 2026"
+    }
+};
 
-            kusmunda: {
-                name: "Kusmunda Open Cast Mine",
-                overall: 91,
-                safety: 94,
-                environment: 88,
-                labour: 90,
-                production: 92,
-                location: "Korba, Chhattisgarh",
-                type: "Open Cast Mine",
-                owner: "South Eastern Coalfields Limited",
-                workers: "4,200",
-                capacity: "50 Million Tonnes/Year",
-                currentProduction: "46 Million Tonnes/Year",
-                inspection: "17 Sept 2026"
-            },
 
-            dipka: {
-                name: "Dipka Open Cast Project",
-                overall: 69,
-                safety: 72,
-                environment: 61,
-                labour: 75,
-                production: 70,
-                location: "Korba, Chhattisgarh",
-                type: "Open Cast Project",
-                owner: "South Eastern Coalfields Limited",
-                workers: "3,900",
-                capacity: "40 Million Tonnes/Year",
-                currentProduction: "28 Million Tonnes/Year",
-                inspection: "10 Sept 2026"
+function changeMine() {
+
+    const selectedMine =
+        document.getElementById("mineSelect").value;
+
+    const data = mineData[selectedMine];
+
+    document.getElementById("mineTitle").innerText =
+        data.name;
+
+    document.getElementById("overallPercentage").innerText =
+        data.overall + "%";
+
+    document.getElementById("safetyPercentage").innerText =
+        data.safety + "%";
+
+    document.getElementById("environmentPercentage").innerText =
+        data.environment + "%";
+
+    document.getElementById("labourPercentage").innerText =
+        data.labour + "%";
+
+    document.getElementById("productionPercentage").innerText =
+        data.production + "%";
+
+
+    document.getElementById("overallBar").style.width =
+        data.overall + "%";
+
+    document.getElementById("safetyBar").style.width =
+        data.safety + "%";
+
+    document.getElementById("environmentBar").style.width =
+        data.environment + "%";
+
+    document.getElementById("labourBar").style.width =
+        data.labour + "%";
+
+    document.getElementById("productionBar").style.width =
+        data.production + "%";
+
+
+    document.getElementById("profileMineName").innerText =
+        data.name;
+
+    document.getElementById("profileLocation").innerText =
+        data.location;
+
+    document.getElementById("profileType").innerText =
+        data.type;
+
+    document.getElementById("profileOwner").innerText =
+        data.owner;
+
+    document.getElementById("profileWorkers").innerText =
+        data.workers;
+
+    document.getElementById("profileCapacity").innerText =
+        data.capacity;
+
+    document.getElementById("profileProduction").innerText =
+        data.current;
+
+    document.getElementById("profileInspection").innerText =
+        data.inspection;
+
+    document.getElementById("profileCompliance").innerText =
+        data.overall + "%";
+
+
+    const status =
+        document.getElementById("mineStatus");
+
+    if (data.overall >= 80) {
+
+        status.innerText = "🟢 Good Compliance";
+        status.style.background = "#dff4e6";
+        status.style.color = "#237344";
+
+    } else if (data.overall >= 70) {
+
+        status.innerText = "🟡 Needs Attention";
+        status.style.background = "#fff4cc";
+        status.style.color = "#a36b00";
+
+    } else {
+
+        status.innerText = "🔴 High Risk";
+        status.style.background = "#fee2e2";
+        status.style.color = "#b42323";
+    }
+}
+
+
+function showProfile() {
+
+    document.getElementById("profileSection")
+        .style.display = "block";
+}
+
+
+function closeProfile() {
+
+    document.getElementById("profileSection")
+        .style.display = "none";
+}
+
+
+function openInspection() {
+
+    document.getElementById("inspectionSection")
+        .style.display = "block";
+}
+
+
+function closeInspection() {
+
+    document.getElementById("inspectionSection")
+        .style.display = "none";
+}
+
+
+function submitInspection() {
+
+    const inspector =
+        document.getElementById("inspectorName").value.trim();
+
+    const inspectorId =
+        document.getElementById("inspectorId").value.trim();
+
+    const mine =
+        document.getElementById("inspectionMine").value;
+
+    const date =
+        document.getElementById("inspectionDate").value;
+
+    const type =
+        document.getElementById("inspectionType").value;
+
+    const location =
+        document.getElementById("inspectionLocation")
+        .value.trim();
+
+    const comments =
+        document.getElementById("inspectionComments")
+        .value.trim();
+
+    const fileInput =
+        document.getElementById("inspectionFile");
+
+
+    if (!inspector || !inspectorId || !date ||
+        !location || !comments) {
+
+        alert("Please fill all required inspection details.");
+        return;
+    }
+
+
+    const table =
+        document.getElementById("inspectionHistory");
+
+    const row = table.insertRow(0);
+
+
+    row.innerHTML = `
+        <td>INS-${Math.floor(1000 + Math.random() * 9000)}</td>
+
+        <td>${mine}</td>
+
+        <td>${inspector}</td>
+
+        <td>
+            ${new Date(date).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            })}
+        </td>
+
+        <td>${type}</td>
+
+        <td>
+            <span class="status-badge pending">
+                Under Review
+            </span>
+        </td>
+
+        <td>
+            ${
+                fileInput.files.length > 0
+                ? `<span class="file-button">
+                    📎 ${fileInput.files[0].name}
+                   </span>`
+                : `<span class="no-file">—</span>`
             }
-
-        };
-
-
-        /* =========================
-           CHANGE MINE
-        ========================= */
-
-        function changeMine() {
-
-            const mine =
-                document.getElementById("mineSelect").value;
-
-            const selected =
-                mineData[mine];
+        </td>
+    `;
 
 
-            document.getElementById("mineTitle")
-                .textContent = selected.name;
+    alert("✅ Inspection submitted successfully!");
 
 
-            document.getElementById("overallPercentage")
-                .textContent = selected.overall + "%";
-
-            document.getElementById("safetyPercentage")
-                .textContent = selected.safety + "%";
-
-            document.getElementById("environmentPercentage")
-                .textContent = selected.environment + "%";
-
-            document.getElementById("labourPercentage")
-                .textContent = selected.labour + "%";
-
-            document.getElementById("productionPercentage")
-                .textContent = selected.production + "%";
+    document.getElementById("inspectorName").value = "";
+    document.getElementById("inspectorId").value = "";
+    document.getElementById("inspectionDate").value = "";
+    document.getElementById("inspectionLocation").value = "";
+    document.getElementById("inspectionComments").value = "";
+    document.getElementById("inspectionFile").value = "";
 
 
-            document.getElementById("overallBar")
-                .style.width = selected.overall + "%";
-
-            document.getElementById("safetyBar")
-                .style.width = selected.safety + "%";
-
-            document.getElementById("environmentBar")
-                .style.width = selected.environment + "%";
-
-            document.getElementById("labourBar")
-                .style.width = selected.labour + "%";
-
-            document.getElementById("productionBar")
-                .style.width = selected.production + "%";
+    closeInspection();
+}
 
 
-            const status =
-                document.getElementById("mineStatus");
+function openAIRisk() {
+
+    window.location.href = "ai-risk.html";
+}
 
 
-            if (selected.overall >= 85) {
+function openDocuments() {
 
-                status.textContent =
-                    "🟢 Good Compliance";
+    window.location.href = "documents.html";
+}
 
+
+function openReports() {
+
+    window.location.href = "reports.html";
+}
+
+
+function openViolation() {
+
+    document.getElementById("violationModal")
+        .style.display = "flex";
+}
+
+
+function closeViolation() {
+
+    document.getElementById("violationModal")
+        .style.display = "none";
+}
+
+
+function submitViolation() {
+
+    const mine =
+        document.getElementById("violationMine").value;
+
+    const type =
+        document.getElementById("violationType").value;
+
+    const severity =
+        document.getElementById("violationSeverity").value;
+
+    const date =
+        document.getElementById("violationDate").value;
+
+    const description =
+        document.getElementById("violationDescription")
+        .value.trim();
+
+    const fileInput =
+        document.getElementById("violationFile");
+
+
+    if (!date || !description) {
+
+        alert("Please enter the violation date and description.");
+        return;
+    }
+
+
+    const table =
+        document.getElementById("violationHistory");
+
+    const row = table.insertRow(0);
+
+
+    let severityClass = "severity-low";
+    let severityIcon = "🟢";
+
+
+    if (severity === "High") {
+
+        severityClass = "severity-high";
+        severityIcon = "🔴";
+
+    } else if (severity === "Medium") {
+
+        severityClass = "severity-medium";
+        severityIcon = "🟡";
+    }
+
+
+    row.innerHTML = `
+        <td>VIO-${Math.floor(1000 + Math.random() * 9000)}</td>
+
+        <td>${mine}</td>
+
+        <td>${type}</td>
+
+        <td>
+            <span class="severity-badge ${severityClass}">
+                ${severityIcon} ${severity}
+            </span>
+        </td>
+
+        <td>
+            ${new Date(date).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            })}
+        </td>
+
+        <td>
+            <span class="status-badge pending">
+                Under Review
+            </span>
+        </td>
+
+        <td>
+            ${
+                fileInput.files.length > 0
+                ? `<span class="file-button">
+                    📎 ${fileInput.files[0].name}
+                   </span>`
+                : `<span class="no-file">—</span>`
             }
+        </td>
+    `;
 
-            else if (selected.overall >= 70) {
 
-                status.textContent =
-                    "🟡 Needs Attention";
+    const countElement =
+        document.getElementById("openViolationsCount");
 
+    let currentCount =
+        parseInt(countElement.innerText) || 0;
+
+    currentCount++;
+
+    countElement.innerText = currentCount;
+
+
+    alert("⚠️ Violation reported successfully!");
+
+
+    document.getElementById("violationDate").value = "";
+    document.getElementById("violationDescription").value = "";
+    document.getElementById("violationFile").value = "";
+
+
+    closeViolation();
+}
+
+
+function openCorrectiveAction() {
+
+    document.getElementById("correctiveActionModal")
+        .style.display = "flex";
+}
+
+
+function closeCorrectiveAction() {
+
+    document.getElementById("correctiveActionModal")
+        .style.display = "none";
+}
+
+
+function submitCorrectiveAction() {
+
+    const mine =
+        document.getElementById("correctiveMine").value;
+
+    const issue =
+        document.getElementById("correctiveIssue")
+        .value.trim();
+
+    const responsible =
+        document.getElementById("correctiveResponsible")
+        .value.trim();
+
+    const dueDate =
+        document.getElementById("correctiveDueDate").value;
+
+    const priority =
+        document.getElementById("correctivePriority").value;
+
+    const description =
+        document.getElementById("correctiveDescription")
+        .value.trim();
+
+    const fileInput =
+        document.getElementById("correctiveFile");
+
+
+    if (!issue || !responsible || !dueDate || !description) {
+
+        alert("Please fill all required corrective action details.");
+        return;
+    }
+
+
+    const table =
+        document.getElementById("correctiveActionHistoryBody");
+
+    const row = table.insertRow(0);
+
+
+    let priorityClass = "priority-low";
+    let priorityIcon = "🟢";
+
+
+    if (priority === "High") {
+
+        priorityClass = "priority-high";
+        priorityIcon = "🔴";
+
+    } else if (priority === "Medium") {
+
+        priorityClass = "priority-medium";
+        priorityIcon = "🟡";
+    }
+
+
+    row.innerHTML = `
+        <td>CA-${Math.floor(1000 + Math.random() * 9000)}</td>
+
+        <td>${mine}</td>
+
+        <td>${issue}</td>
+
+        <td>${responsible}</td>
+
+        <td>
+            ${new Date(dueDate).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            })}
+        </td>
+
+        <td>
+            <span class="severity-badge ${priorityClass}">
+                ${priorityIcon} ${priority}
+            </span>
+        </td>
+
+        <td>
+            <span class="status-badge pending">
+                Pending
+            </span>
+        </td>
+
+        <td>
+            ${
+                fileInput.files.length > 0
+                ? `<span class="file-button">
+                    📎 ${fileInput.files[0].name}
+                   </span>`
+                : `<span class="no-file">—</span>`
             }
+        </td>
+    `;
 
-            else {
 
-                status.textContent =
-                    "🔴 High Risk";
+    alert("✅ Corrective action created successfully!");
 
-            }
 
-        }
+    document.getElementById("correctiveIssue").value = "";
+    document.getElementById("correctiveResponsible").value = "";
+    document.getElementById("correctiveDueDate").value = "";
+    document.getElementById("correctiveDescription").value = "";
+    document.getElementById("correctiveFile").value = "";
 
 
-        /* =========================
-           OPEN PROFILE
-        ========================= */
+    closeCorrectiveAction();
+}
 
-        function showProfile() {
 
-            const mine =
-                document.getElementById("mineSelect").value;
+window.onclick = function(event) {
 
-            const selected =
-                mineData[mine];
+    const violationModal =
+        document.getElementById("violationModal");
 
+    const correctiveModal =
+        document.getElementById("correctiveActionModal");
 
-            document.getElementById("profileMineName")
-                .textContent = selected.name;
 
-            document.getElementById("profileLocation")
-                .textContent = selected.location;
+    if (event.target === violationModal) {
 
-            document.getElementById("profileType")
-                .textContent = selected.type;
+        violationModal.style.display = "none";
+    }
 
-            document.getElementById("profileOwner")
-                .textContent = selected.owner;
 
-            document.getElementById("profileWorkers")
-                .textContent = selected.workers;
+    if (event.target === correctiveModal) {
 
-            document.getElementById("profileCapacity")
-                .textContent = selected.capacity;
+        correctiveModal.style.display = "none";
+    }
 
-            document.getElementById("profileProduction")
-                .textContent = selected.currentProduction;
+};
 
-            document.getElementById("profileInspection")
-                .textContent = selected.inspection;
-
-            document.getElementById("profileCompliance")
-                .textContent = selected.overall + "%";
-
-
-            document.getElementById("profileSection")
-                .style.display = "block";
-
-        }
-
-
-        /* =========================
-           CLOSE PROFILE
-        ========================= */
-
-        function closeProfile() {
-
-            document.getElementById("profileSection")
-                .style.display = "none";
-
-        }
-
-
-        /* =========================
-           OPEN INSPECTION
-        ========================= */
-
-        function openInspection() {
-
-            document.getElementById("inspectionSection")
-                .style.display = "flex";
-
-        }
-
-
-        /* =========================
-           CLOSE INSPECTION
-        ========================= */
-
-        function closeInspection() {
-
-            document.getElementById("inspectionSection")
-                .style.display = "none";
-
-        }
-
-
-        /* =========================
-           SUBMIT INSPECTION
-        ========================= */
-
-        function submitInspection() {
-
-
-            /* GET FORM VALUES */
-
-            const inspectorName =
-                document.getElementById("inspectorName")
-                    .value.trim();
-
-
-            const inspectorId =
-                document.getElementById("inspectorId")
-                    .value.trim();
-
-
-            const mine =
-                document.getElementById("inspectionMine")
-                    .value;
-
-
-            const date =
-                document.getElementById("inspectionDate")
-                    .value;
-
-
-            const inspectionType =
-                document.getElementById("inspectionType")
-                    .value;
-
-
-            const inspectionFile =
-                document.getElementById("inspectionFile")
-                    .files[0];
-
-
-            /* VALIDATION */
-
-            if (
-                inspectorName === "" ||
-                inspectorId === "" ||
-                date === ""
-            ) {
-
-                alert(
-                    "Please fill Inspector Name, Inspector ID and Inspection Date."
-                );
-
-                return;
-
-            }
-
-
-            /* GENERATE INSPECTION ID */
-
-            const inspectionId =
-                "INS-" +
-                Math.floor(
-                    1000 + Math.random() * 9000
-                );
-
-
-            /* FORMAT DATE */
-
-            const dateObject =
-                new Date(date + "T00:00:00");
-
-
-            const formattedDate =
-                dateObject.toLocaleDateString(
-                    "en-GB",
-                    {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric"
-                    }
-                );
-
-
-            /* GET TABLE */
-
-            const tableBody =
-                document.getElementById(
-                    "inspectionHistory"
-                );
-
-
-            /* CREATE NEW ROW */
-
-            const newRow =
-                document.createElement("tr");
-
-
-            /* CREATE TABLE CELLS */
-
-            const idCell =
-                document.createElement("td");
-
-            idCell.textContent =
-                inspectionId;
-
-
-            const mineCell =
-                document.createElement("td");
-
-            mineCell.textContent =
-                mine;
-
-
-            const inspectorCell =
-                document.createElement("td");
-
-            inspectorCell.textContent =
-                inspectorName;
-
-
-            const dateCell =
-                document.createElement("td");
-
-            dateCell.textContent =
-                formattedDate;
-
-
-            const typeCell =
-                document.createElement("td");
-
-            typeCell.textContent =
-                inspectionType;
-
-
-            const statusCell =
-                document.createElement("td");
-
-
-            const statusBadge =
-                document.createElement("span");
-
-            statusBadge.className =
-                "status-badge pending";
-
-            statusBadge.textContent =
-                "Under Review";
-
-
-            statusCell.appendChild(
-                statusBadge
-            );
-
-
-            /* FILE CELL */
-
-            const fileCell =
-                document.createElement("td");
-
-
-            if (inspectionFile) {
-
-                const fileURL =
-                    URL.createObjectURL(
-                        inspectionFile
-                    );
-
-
-                const fileButton =
-                    document.createElement("a");
-
-
-                fileButton.href =
-                    fileURL;
-
-
-                fileButton.target =
-                    "_blank";
-
-
-                fileButton.className =
-                    "file-button";
-
-
-                fileButton.textContent =
-                    "📎 View File";
-
-
-                fileButton.title =
-                    inspectionFile.name;
-
-
-                fileCell.appendChild(
-                    fileButton
-                );
-
-            }
-
-            else {
-
-                const noFile =
-                    document.createElement("span");
-
-                noFile.className =
-                    "no-file";
-
-                noFile.textContent =
-                    "No file";
-
-                fileCell.appendChild(
-                    noFile
-                );
-
-            }
-
-
-            /* ADD CELLS TO ROW */
-
-            newRow.appendChild(idCell);
-
-            newRow.appendChild(mineCell);
-
-            newRow.appendChild(inspectorCell);
-
-            newRow.appendChild(dateCell);
-
-            newRow.appendChild(typeCell);
-
-            newRow.appendChild(statusCell);
-
-            newRow.appendChild(fileCell);
-
-
-            /* ADD NEW ROW TO TOP */
-
-            tableBody.insertBefore(
-                newRow,
-                tableBody.firstChild
-            );
-
-
-            /* SUCCESS MESSAGE */
-
-            alert(
-                "✅ Inspection submitted successfully!\n\n" +
-
-                "Inspection ID: " +
-                inspectionId + "\n" +
-
-                "Mine: " +
-                mine + "\n" +
-
-                "Inspector: " +
-                inspectorName + "\n" +
-
-                "Date: " +
-                formattedDate + "\n" +
-
-                "Status: Under Review"
-            );
-
-
-            /* CLOSE FORM */
-
-            closeInspection();
-
-
-            /* CLEAR FORM */
-
-            document.getElementById(
-                "inspectorName"
-            ).value = "";
-
-
-            document.getElementById(
-                "inspectorId"
-            ).value = "";
-
-
-            document.getElementById(
-                "inspectionDate"
-            ).value = "";
-
-
-            document.getElementById(
-                "inspectionLocation"
-            ).value = "";
-
-
-            document.getElementById(
-                "inspectionComments"
-            ).value = "";
-
-
-            document.getElementById(
-                "inspectionGPS"
-            ).value =
-                "22.3595, 82.7501";
-
-
-            document.getElementById(
-                "inspectionFile"
-            ).value = "";
-
-        }
-
-    </script>
+</script>
 
 </body>
 </html>
